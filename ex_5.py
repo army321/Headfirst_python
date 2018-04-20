@@ -21,6 +21,17 @@ with open('E:/GitHub/Headfirst_python/kelly/susan.txt') as susanf:
 
 #path = 'E:/GitHub/Headfirst_python/kelly/'  
 path = 'F:/github/Headfirst_python/kelly/'  
+#206
+#创建类
+class Athlete:
+	def __init__(self,a_name,a_dob = None, a_times = []):
+		self.name = a_name
+		self.dob = a_dob
+		self.times = a_times
+		
+	def top3(self):
+		return(sorted(set([sanitize(t) for t in self.times]))[0:3])
+
 
 def get_coach_data(filename):  #打开文件的函数
 	try:
@@ -28,9 +39,10 @@ def get_coach_data(filename):  #打开文件的函数
 			data = f.readline()
 			templ = data.strip().split(',')
 			
-		return({'Name':templ.pop(0),
-				'DOB':templ.pop(0),
-				'Times':str(sorted(set([sanitize(t) for t in templ]))[0:3])})
+		return(Athlete(templ.pop(0),templ.pop(0),templ))
+		#{'Name':templ.pop(0),
+		#		'DOB':templ.pop(0),
+		#		'Times':str(sorted(set([sanitize(t) for t in templ]))[0:3])})
 	except IOError as ioerr:
 		print('file error' + ioerr)
 		return(None)
@@ -51,8 +63,9 @@ susan2 = get_coach_data('susan2.txt')
 #(susan_name,susan_dob) = susan2.pop(0),susan2.pop(0) #去掉头2个元素
 #print(susan_name + "'s fastest time are : " + str(sorted(set([sanitize(t) for t in susan2]))[0:3]))
 
-print(susan2['Name'] + "'s fastest time are : " + susan2['Times'])
+#print(susan2['Name'] + "'s fastest time are : " + susan2['Times'])
 
+print(susan2.name + "'s fastest time are : " + str(susan2.top3()))
 
 '''
 #这部分移到函数里面去
