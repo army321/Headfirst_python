@@ -19,8 +19,8 @@ with open('E:/GitHub/Headfirst_python/kelly/susan.txt') as susanf:
 	#优化成一个函数
 '''
 
-#path = 'E:/GitHub/Headfirst_python/kelly/'  
-path = 'F:/github/Headfirst_python/kelly/'  
+path = 'E:/GitHub/Headfirst_python/kelly/'  
+#path = 'F:/github/Headfirst_python/kelly/'  
 #206
 #创建类
 class Athlete:
@@ -33,13 +33,27 @@ class Athlete:
 		return(sorted(set([sanitize(t) for t in self.times]))[0:3])
 
 
+#继承类list
+class AthleteList(list):
+	def __init__(self,a_name,a_dob = None,a_times =[]):
+		list.__init__([])
+		self.name = a_name
+		self.dob = a_dob
+		self.extend(a_times)
+	def top3(self):
+		return(sorted(set([sanitize(t) for t in self]))[0:3])
+
+
+
+
+		
 def get_coach_data(filename):  #打开文件的函数
 	try:
 		with open(path+filename) as f:
 			data = f.readline()
 			templ = data.strip().split(',')
 			
-		return(Athlete(templ.pop(0),templ.pop(0),templ))
+		return(AthleteList(templ.pop(0),templ.pop(0),templ))
 		#{'Name':templ.pop(0),
 		#		'DOB':templ.pop(0),
 		#		'Times':str(sorted(set([sanitize(t) for t in templ]))[0:3])})
@@ -58,6 +72,14 @@ def sanitize(time_string):   #替换文本中的连接符，统一用.  传入�
 	(mins,sece)=time_string.split(splitter)
 	return (mins + '.' +sece)	
 
+#测试AthleteList
+vera = AthleteList('vera')
+vera.append('1.33')
+print(vera.top3())
+vera.extend(['2.22','1.22','2.44'])
+print(vera.top3())	
+
+#	
 susan2 = get_coach_data('susan2.txt')
 #print(susan2)
 #(susan_name,susan_dob) = susan2.pop(0),susan2.pop(0) #去掉头2个元素
