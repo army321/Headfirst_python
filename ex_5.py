@@ -19,8 +19,8 @@ with open('E:/GitHub/Headfirst_python/kelly/susan.txt') as susanf:
 	#优化成一个函数
 '''
 
-path = 'E:/GitHub/Headfirst_python/kelly/'  
-#path = 'F:/github/Headfirst_python/kelly/'  
+#path = 'E:/GitHub/Headfirst_python/kelly/'  
+path = 'F:/github/Headfirst_python/kelly/'  
 #206
 #创建类
 class Athlete:
