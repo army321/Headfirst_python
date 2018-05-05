@@ -1,4 +1,4 @@
-
+#网页结构转换，把内容转成网页可识别的，没有数据提取的逻辑
 from string import Template
 
 def start_response(resp="text/html"):
