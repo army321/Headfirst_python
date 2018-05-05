@@ -3,7 +3,12 @@ import pickle
 
 from athletelist import AthleteList
 
-def get_coach_data(filename):
+#为数据建模，把txt数据存到内存中 put_to_store
+#然后可以到内存中获得数据。get_from_store
+
+#path = 'F:/github/Headfirst_python/kelly/'   #要加入路径
+
+def get_coach_data(filename): #打开文件的函数
     try:
         with open(filename) as f:
             data = f.readline()
@@ -13,7 +18,7 @@ def get_coach_data(filename):
         print('File error (get_coach_data): ' + str(ioerr))
         return(None)
 
-def put_to_store(files_list):
+def put_to_store(files_list): #把数据压入内存中，方便调用
     all_athletes = {}
     for each_file in files_list:
         ath = get_coach_data(each_file)
@@ -25,7 +30,7 @@ def put_to_store(files_list):
         print('File error (put_and_store): ' + str(ioerr))
     return(all_athletes)
 
-def get_from_store():
+def get_from_store():  #把数据从内存中读取
     all_athletes = {}
     try:
         with open('athletes.pickle', 'rb') as athf:
