@@ -1,17 +1,22 @@
 import yate
 import cgi
-import os
-import time
-import sys
 
-print(yate.start_response('text/html'))
-addr = os.environ['REMOTE_ADDR']
-host = os.environ['REMOTE_HOST']
-methon = os.environ['REQUEST_METHOD']
-cur_time = time.asctime(time.localtime())
-print(host + ", " + addr + ", " + cur_time + ": " + methon + ": " , end = '',file = sys.stderr )
+import sqlite3 #这个函数现在用sqlite调用，不在写到原来的腌制数据中
+
+print(yate.start_response('text/plain'))
+
+db_name = 'coachdate.sqlite'
+
 form = cgi.FieldStorage()
-for each_form_item in form.keys():
-	print(each_form_item + '->' + form[each_form_item].value,end = ' ',file = sys.stderr)
-print(file = sys.stderr)
+the_id = form_data['Athlete'].value
+the_time = form_data['Time'].value
+
+connection = sqlite3.connect(db_name)
+cursor = connection.cursor()
+cursor.execute("INSERT INTO timing_data (athlete_id,value) VALUES(?,?)",(the_id,the_time))
+
+connection.commit()
+connection.close()
+
+
 print('OK')

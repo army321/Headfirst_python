@@ -18,7 +18,7 @@ print(yate.start_form("generate_timing_data.py"))  #选择想要查询的运动�
 print(yate.para("选择你想要查询的运动员: " ))
 
 for each_athlete in athletes:
-	print(yate.radio_button_id("which_athlete",each_athlete[0],each_athlete[1])) 
+	print(yate.radio_button_id("which_athlete",each_athlete[0],each_athlete[1]))  
 	#print(each_athlete[0],each_athlete[1]) 
 print(yate.end_form("查询"))
 
